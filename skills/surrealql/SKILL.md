@@ -60,7 +60,7 @@ Reference these guidelines when:
 | [DEFINE API](https://surrealdb.com/docs/surrealql/statements/define/api) | Define an API endpoint |
 | [DEFINE BUCKET](https://surrealdb.com/docs/surrealql/statements/define/bucket) | Define a storage bucket |
 | [DEFINE CONFIG](https://surrealdb.com/docs/surrealql/statements/define/config) | Define a configuration |
-| [DEFINE MODULE](https://surrealdb.com/docs/surrealql/statements/define/module) | Define a module |
+| [DEFINE MODULE](https://surrealdb.com/docs/surrealql/statements/define/module) | Define a Surrealism extension module |
 | [DEFINE PARAM](https://surrealdb.com/docs/surrealql/statements/define/param) | Define a global parameter |
 | [DEFINE SEQUENCE](https://surrealdb.com/docs/surrealql/statements/define/sequence) | Define an auto-incrementing sequence |
 | [DEFINE USER](https://surrealdb.com/docs/surrealql/statements/define/user) | Define a system user |
