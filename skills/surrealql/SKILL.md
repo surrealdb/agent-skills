@@ -1,6 +1,6 @@
 ---
 name: surrealql
-description: "SurrealQL query language reference for SurrealDB. Use when writing SurrealQL queries (SELECT, CREATE, UPDATE, DELETE, RELATE), designing schemas (DEFINE TABLE, DEFINE FIELD, DEFINE INDEX), working with graph relationships and record IDs, migrating from traditional SQL, or setting up live queries. Triggers: SurrealDB, SurrealQL, surql, record IDs, graph queries, RELATE, LIVE SELECT."
+description: "Generate and modify SurrealQL queries to interact with SurrealDB databases. This includes creating and retrieving records, designing and managing schemas, establishing and querying graph relationships, performing live (real-time) queries, and leveraging all unique SurrealQL features for advanced database workflows. Use this skill whenever users need to write, adapt, or troubleshoot SurrealQL statements."
 metadata:
   author: surrealdb
   version: "0.1.0"
@@ -8,215 +8,123 @@ metadata:
 
 # SurrealQL
 
-**IMPORTANT**: SurrealQL is NOT ANSI-SQL. Never assume SQL knowledge from other databases applies. Always refer to the examples below or the documentation at https://surrealdb.com/docs for accurate syntax and behavior.
+A skill for writing and modifying SurrealQL queries to interact with SurrealDB databases.
 
-## Key Concepts
+SurrealQL is the official query language for SurrealDB. It is a modern, flexible, and powerful query language that is designed to be easy to learn and use.
 
-### Record IDs
+## When to use this skill
 
-SurrealDB uses `table:id` for record identifiers:
+Reference these guidelines when:
 
-- `person:john` — record with ID "john" in "person" table
-- `article:surreal_intro` — record with ID "surreal_intro" in "article" table
+- Writing, modifying, or troubleshooting SurrealQL queries
+- Designing or managing schemas
+- Converting other query languages to SurrealQL
 
-Each record has a unique `id` field which cannot be changed once specified.
+## Rules & Conventions
 
-### Key Differences from SQL
+- SurrealQL is **NOT ANSI-SQL**. Never assume SQL knowledge from other databases applies. Always refer to the examples below or the documentation at https://surrealdb.com/docs for accurate syntax and behavior.
+- When SurrealQL is stored in a file, it should have a `.surql` extension.
+- SurrealQL is a relatively young language, and new features are being added regularly. Refer to the documentation at https://surrealdb.com/docs for the most up-to-date information.
 
-- Every row is called a **Record** (similar to a MongoDB document, supports nested objects and arrays)
-- Record IDs use `table:id` format
-- Graph traversal uses arrow syntax:
-  - `->` outbound connections
-  - `<-` inbound connections
-  - `<->` any direction
-- Use `RELATE` for graph relationships instead of foreign keys
-- Use `MERGE` / `PATCH` on `UPDATE` to preserve existing data
+## Statements
 
-### Update Modes
+### Query Statements
 
-- **CONTENT** (replace): replaces entire record content
-- **MERGE**: merges new data with existing data
-- **PATCH**: applies JSON patch operations
+| Statement | Purpose |
+| --- | --- |
+| [SELECT](https://surrealdb.com/docs/surrealql/statements/select) | Query records, traverse graphs, aggregate data |
+| [CREATE](https://surrealdb.com/docs/surrealql/statements/create) | Create new records (errors if record exists) |
+| [INSERT](https://surrealdb.com/docs/surrealql/statements/insert) | Insert one or more records or graph edges; supports `ON DUPLICATE KEY UPDATE` |
+| [UPDATE](https://surrealdb.com/docs/surrealql/statements/update) | Update existing records (no-op if record doesn't exist) |
+| [UPSERT](https://surrealdb.com/docs/surrealql/statements/upsert) | Insert a record, or update it if it already exists |
+| [DELETE](https://surrealdb.com/docs/surrealql/statements/delete) | Delete records or graph edges |
+| [RELATE](https://surrealdb.com/docs/surrealql/statements/relate) | Create graph edges between records |
+| [LIVE SELECT](https://surrealdb.com/docs/surrealql/statements/live) | Stream real-time changes to a table |
+| [KILL](https://surrealdb.com/docs/surrealql/statements/kill) | Cancel an active LIVE SELECT query |
+| [LET](https://surrealdb.com/docs/surrealql/statements/let) | Assign a value to a parameter |
+| [RETURN](https://surrealdb.com/docs/surrealql/statements/return) | Return a value from a block or function |
 
-## Best Practices
+### Schema & Resource Statements
 
-1. Use specific record IDs when known for better performance
-2. Use parameterized queries to prevent injection when dealing with user input
-3. Use `type::table($table)` to safely parameterize table names
-4. Use `MERGE` / `PATCH` modes when updating to preserve existing data
-5. Use `RELATE` to model graph data instead of foreign keys
-6. Define schemas for data validation and consistency
-7. Create indexes on frequently queried fields
-8. Use `LIVE` queries for real-time updates when needed
+| Statement | Purpose |
+| --- | --- |
+| [DEFINE NAMESPACE](https://surrealdb.com/docs/surrealql/statements/define/namespace) | Define a namespace |
+| [DEFINE DATABASE](https://surrealdb.com/docs/surrealql/statements/define/database) | Define a database |
+| [DEFINE TABLE](https://surrealdb.com/docs/surrealql/statements/define/table) | Define a table (schemafull, schemaless, as view) |
+| [DEFINE FIELD](https://surrealdb.com/docs/surrealql/statements/define/field) | Define a field with type, default, assertion |
+| [DEFINE INDEX](https://surrealdb.com/docs/surrealql/statements/define/index) | Define an index (unique, search, vector) |
+| [DEFINE EVENT](https://surrealdb.com/docs/surrealql/statements/define/event) | Define event triggers on a table |
+| [DEFINE FUNCTION](https://surrealdb.com/docs/surrealql/statements/define/function) | Define a custom function |
+| [DEFINE ANALYZER](https://surrealdb.com/docs/surrealql/statements/define/analyzer) | Define a search analyzer |
+| [DEFINE ACCESS](https://surrealdb.com/docs/surrealql/statements/define/access) | Define authentication access methods (Bearer, JWT, Record) |
+| [DEFINE API](https://surrealdb.com/docs/surrealql/statements/define/api) | Define an API endpoint |
+| [DEFINE BUCKET](https://surrealdb.com/docs/surrealql/statements/define/bucket) | Define a storage bucket |
+| [DEFINE CONFIG](https://surrealdb.com/docs/surrealql/statements/define/config) | Define a configuration |
+| [DEFINE MODULE](https://surrealdb.com/docs/surrealql/statements/define/module) | Define a module |
+| [DEFINE PARAM](https://surrealdb.com/docs/surrealql/statements/define/param) | Define a global parameter |
+| [DEFINE SEQUENCE](https://surrealdb.com/docs/surrealql/statements/define/sequence) | Define an auto-incrementing sequence |
+| [DEFINE USER](https://surrealdb.com/docs/surrealql/statements/define/user) | Define a system user |
+| [ALTER](https://surrealdb.com/docs/surrealql/statements/alter) | Alter an existing resource definition |
+| [REMOVE](https://surrealdb.com/docs/surrealql/statements/remove) | Remove any defined resource |
+| [REBUILD](https://surrealdb.com/docs/surrealql/statements/rebuild) | Rebuild an index |
+| [ACCESS](https://surrealdb.com/docs/surrealql/statements/access) | Manage access grants |
+| [USE](https://surrealdb.com/docs/surrealql/statements/use) | Switch to a different namespace or database |
+| [INFO](https://surrealdb.com/docs/surrealql/statements/info) | Inspect definitions for a resource |
+| [SHOW](https://surrealdb.com/docs/surrealql/statements/show) | View changefeed for a table or database |
 
-## SELECT
+### Control Flow Statements
 
-```surql
-SELECT * FROM type::table($table);
+| Statement | Purpose |
+| --- | --- |
+| [BEGIN / COMMIT](https://surrealdb.com/docs/surrealql/statements/begin) | Begin and commit a manual transaction |
+| [CANCEL](https://surrealdb.com/docs/surrealql/statements/cancel) | Cancel a transaction |
+| [IF / ELSE](https://surrealdb.com/docs/surrealql/statements/if-else) | Conditional execution |
+| [FOR](https://surrealdb.com/docs/surrealql/statements/for) | Iterate over values |
+| [BREAK](https://surrealdb.com/docs/surrealql/statements/break) | Exit a FOR loop early |
+| [CONTINUE](https://surrealdb.com/docs/surrealql/statements/continue) | Skip to next iteration in a FOR loop |
+| [THROW](https://surrealdb.com/docs/surrealql/statements/throw) | Cancel execution and return an error |
+| [SLEEP](https://surrealdb.com/docs/surrealql/statements/sleep) | Pause execution for a duration |
 
-SELECT name, age FROM type::table($table);
+## References
 
-SELECT * FROM type::table($table):john;
+For detailed querying patterns (filtering, graph traversal, aggregation,
+subqueries), see [references/querying.md](references/querying.md).
 
-SELECT * FROM type::table($table) WHERE age > 25;
+For schema management patterns (tables, fields, indexes, events, access),
+see [references/schema.md](references/schema.md).
 
-SELECT * FROM type::table($table) WHERE age > 25 ORDER BY name LIMIT 10;
+For information about the values that can be stored in SurrealDB records,
+see [references/values.md](references/values.md).
 
-SELECT * FROM type::table($table) SPLIT ON age, city;
+## Validation
 
-SELECT count(), age FROM type::table($table) GROUP BY age;
+Use the SurrealDB CLI to validate SurrealQL queries.
 
-SELECT * FROM type::table($table) ORDER BY name LIMIT 10 START AT 20;
-
--- Graph queries
-SELECT * FROM type::table($table) WHERE ->knows->person.age > 30;
-
-SELECT * FROM type::table($table)
-  WHERE ->wrote->article->has->category.name = 'Technology';
-
--- Aggregation
-SELECT count() FROM type::table($table) GROUP BY author;
-
--- Subqueries
-SELECT * FROM type::table($table) WHERE id IN (SELECT author FROM article);
-
--- Complex query with multiple clauses
-SELECT * FROM type::table($table)
-  WHERE age > 25 AND city = 'NYC'
-  SPLIT ON age
-  GROUP BY age, city
-  ORDER BY age DESC
-  LIMIT 10
-  START AT 5;
+```bash
+surreal validate query.surql
 ```
 
-## CREATE
+You can pass a glob pattern to validate multiple files at once.
 
-```surql
-CREATE person:john CONTENT {
-    name: 'John Doe',
-    age: 30,
-    email: 'john@example.com'
-};
+## Formatting
 
-CREATE person CONTENT [
-    { name: 'Alice', age: 25 },
-    { name: 'Bob', age: 35 }
-];
+When SurrealQL queries need to be well-formatted — for example when presenting
+queries to users, generating migration files, or writing `.surql` files — use
+the [`@surrealdb/surql-fmt`](https://www.npmjs.com/package/@surrealdb/surql-fmt)
+CLI tool.
 
-CREATE person:alice CONTENT { name: 'Alice', age: 25 };
-```
+### Usage
 
-## UPDATE
+```bash
+# Format a file and print to stdout:
+npx @surrealdb/surql-fmt query.surql
 
-```surql
--- Replace entire record
-UPDATE person:john CONTENT {
-    name: 'John Doe',
-    age: 31,
-    city: 'New York'
-};
+# Format files in-place:
+npx @surrealdb/surql-fmt --write migrations/*.surql
 
--- Merge with existing data
-UPDATE person:john MERGE {
-    age: 31,
-    city: 'New York'
-};
+# Check if files are already formatted (exits with code 1 if not):
+npx @surrealdb/surql-fmt --check src/**/*.surql
 
--- JSON patch
-UPDATE person:john PATCH [
-    { op: 'replace', path: '/age', value: 31 },
-    { op: 'add', path: '/city', value: 'New York' }
-];
-
--- Bulk update
-UPDATE person SET age += 1 WHERE age < 30;
-```
-
-## DELETE
-
-```surql
-DELETE person:john;
-
-DELETE person;
-
-DELETE person WHERE age < 18;
-```
-
-## RELATE
-
-```surql
-RELATE person:john->knows->person:jane;
-
-RELATE person:john->wrote->article:surreal_guide CONTENT {
-    date: '2024-01-15',
-    word_count: 1500
-};
-```
-
-## Schema Definition
-
-```surql
-DEFINE TABLE person SCHEMAFULL;
-
-DEFINE FIELD name ON TABLE person TYPE string;
-DEFINE FIELD age ON TABLE person TYPE int;
-DEFINE FIELD email ON TABLE person TYPE string;
-
-DEFINE INDEX idx_name ON TABLE person COLUMNS name;
-DEFINE INDEX idx_age ON TABLE person COLUMNS age;
-```
-
-## Live Queries
-
-```surql
-LIVE SELECT * FROM person;
-
-LIVE SELECT * FROM person WHERE age > 25;
-
-LIVE SELECT * FROM person WHERE ->knows->person.age > 30;
-```
-
-## Advanced Features
-
-### Nested Object and Array Access
-
-```surql
-SELECT name, profile.city FROM person;
-
-SELECT * FROM person WHERE tags CONTAINS 'developer';
-
-SELECT * FROM person WHERE profile.age > 25;
-```
-
-### Time and Date Operations
-
-```surql
-SELECT * FROM article WHERE created_at > '2024-01-01';
-
-SELECT * FROM event WHERE time::day(created_at) = time::day(now());
-```
-
-### String Operations
-
-```surql
-SELECT * FROM person WHERE name CONTAINS 'John';
-
-SELECT * FROM person WHERE string::uppercase(name) = 'JOHN';
-```
-
-## Common Pattern: Blog System
-
-```surql
-CREATE person:john CONTENT { name: 'John Doe', email: 'john@example.com' };
-CREATE article:surreal_guide CONTENT { title: 'SurrealDB Guide', content: '...' };
-
-RELATE person:john->wrote->article:surreal_guide;
-RELATE article:surreal_guide->has->category:technology;
-
--- Articles by author
-SELECT * FROM article WHERE ->wrote->person.name = 'John Doe';
-
--- Authors by article category
-SELECT * FROM person WHERE ->wrote->article->has->category.name = 'Technology';
+# Format from stdin:
+echo "SELECT * FROM person WHERE age>18" | npx @surrealdb/surql-fmt --stdin
 ```
