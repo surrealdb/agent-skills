@@ -109,7 +109,7 @@ surreal validate query.surql
 # Validate glob pattern of files:
 surreal validate queries/*.surql
 
-# Validate from stdin:
+# Validate from stdin (available since SurrealDB v3.1.0):
 echo "SELECT * FROM person WHERE age > 18" | surreal validate --stdin
 ```
 
