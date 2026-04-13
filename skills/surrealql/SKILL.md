@@ -93,25 +93,33 @@ subqueries), see [references/querying.md](references/querying.md).
 For schema management patterns (tables, fields, indexes, events, access),
 see [references/schema.md](references/schema.md).
 
-For information about the values that can be stored in SurrealDB records,
+For in-depth information about the values that can be stored in SurrealDB records,
 see [references/values.md](references/values.md).
 
 ## Validation
 
-Use the SurrealDB CLI to validate SurrealQL queries.
+When generating SurrealQL queries, or modifying existing queries, you should **always** validate them using the SurrealDB CLI if available. Validation may fail to due version differences, at which point you can retrieve your SurrealDB CLI version with `surreal version`. Validation can only be performed against full queries or values, not partial or fragmentary statements.
+
+### Usage
 
 ```bash
+# Validate a single file:
 surreal validate query.surql
-```
 
-You can pass a glob pattern to validate multiple files at once.
+# Validate glob pattern of files:
+surreal validate queries/*.surql
+
+# Validate from stdin (available since SurrealDB v3.1.0):
+echo "SELECT * FROM person WHERE age > 18" | surreal validate --stdin
+```
 
 ## Formatting
 
-When SurrealQL queries need to be well-formatted — for example when presenting
-queries to users, generating migration files, or writing `.surql` files — use
-the [`@surrealdb/surql-fmt`](https://www.npmjs.com/package/@surrealdb/surql-fmt)
-CLI tool.
+When generating SurrealQL queries or SQON values you may decide to format them using the `surqlfmt` CLI tool if a NodeJS-like runtime is available. Situations in which you should **always** format include:
+
+- When presenting queries to users
+- When generating migration files
+- When writing `.surql` files
 
 ### Usage
 
