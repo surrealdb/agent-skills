@@ -21,6 +21,7 @@ npx skills add surrealdb/agent-skills
 
 ```bash
 npx skills add surrealdb/agent-skills --skill surrealql
+npx skills add surrealdb/agent-skills --skill surrealkit
 npx skills add surrealdb/agent-skills --skill surrealdb-vector
 npx skills add surrealdb/agent-skills --skill surrealdb-python
 ```
@@ -52,6 +53,23 @@ definitions, graph relationships, and common patterns.
 - Working with graph relationships and record IDs
 - Migrating from traditional SQL to SurrealQL
 - Setting up live queries for real-time updates
+
+</details>
+
+<details>
+<summary><strong>surrealkit</strong></summary>
+
+SurrealKit CLI for SurrealDB schema management: project scaffolding from
+templates, development sync, phased production rollouts, type generation, and a
+declarative testing framework.
+
+**Use when:**
+
+- Scaffolding a new SurrealDB project with `surrealkit init` and templates
+- Applying schema changes in development with `surrealkit sync`
+- Planning, executing, or rolling back production migrations with `surrealkit rollout`
+- Generating JSON or TypeScript types from a live schema with `surrealkit typegen`
+- Writing declarative TOML tests for schemas, permissions, and API endpoints with `surrealkit test`
 
 </details>
 
