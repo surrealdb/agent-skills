@@ -24,6 +24,7 @@ npx skills add surrealdb/agent-skills --skill surrealql
 npx skills add surrealdb/agent-skills --skill surrealkit
 npx skills add surrealdb/agent-skills --skill surrealdb-vector
 npx skills add surrealdb/agent-skills --skill surrealdb-python
+npx skills add surrealdb/agent-skills --skill surrealdb-cli
 ```
 
 ### Local install from repository
@@ -100,6 +101,23 @@ Using SurrealDB with the Python SDK, covering both client/server mode
 - Using the `surrealdb` Python package (sync or async)
 - Running SurrealDB embedded in Python without a server
 - Performing CRUD operations from Python code
+
+</details>
+
+<details>
+<summary><strong>surrealdb-cli</strong></summary>
+
+The `surreal` command-line binary for running and operating SurrealDB: starting
+a server, querying it interactively or via pipes, importing/exporting data, and
+maintenance tasks.
+
+**Use when:**
+
+- Starting a SurrealDB server with `surreal start` (memory, RocksDB, SurrealKV, or TiKV)
+- Opening the SQL shell or piping queries with `surreal sql`
+- Backing up or restoring data with `surreal export` and `surreal import`
+- Gating scripts or CI on server readiness with `surreal is-ready`
+- Upgrading the binary, repairing storage, or managing ML models (`surreal upgrade`, `surreal fix`, `surreal ml`)
 
 </details>
 
