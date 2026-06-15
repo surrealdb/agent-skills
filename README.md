@@ -25,6 +25,7 @@ npx skills add surrealdb/agent-skills --skill surrealkit
 npx skills add surrealdb/agent-skills --skill surrealdb-vector
 npx skills add surrealdb/agent-skills --skill surrealdb-python
 npx skills add surrealdb/agent-skills --skill surrealdb-js
+npx skills add surrealdb/agent-skills --skill surrealdb-cli
 ```
 
 ### Local install from repository
@@ -117,6 +118,23 @@ CRUD, parameterized queries, and live queries.
 - Using the `surrealdb` npm package
 - Running SurrealDB embedded with `@surrealdb/node` or `@surrealdb/wasm`
 - Performing CRUD, queries, and real-time live queries from JS/TS code
+
+</details>
+
+<details>
+<summary><strong>surrealdb-cli</strong></summary>
+
+The `surreal` command-line binary for running and operating SurrealDB: starting
+a server, querying it interactively or via pipes, importing/exporting data, and
+maintenance tasks.
+
+**Use when:**
+
+- Starting a SurrealDB server with `surreal start` (memory, RocksDB, SurrealKV, or TiKV)
+- Opening the SQL shell or piping queries with `surreal sql`
+- Backing up or restoring data with `surreal export` and `surreal import`
+- Gating scripts or CI on server readiness with `surreal is-ready`
+- Upgrading the binary, repairing storage, or managing ML models (`surreal upgrade`, `surreal fix`, `surreal ml`)
 
 </details>
 
