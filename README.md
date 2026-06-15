@@ -24,6 +24,7 @@ npx skills add surrealdb/agent-skills --skill surrealql
 npx skills add surrealdb/agent-skills --skill surrealkit
 npx skills add surrealdb/agent-skills --skill surrealdb-vector
 npx skills add surrealdb/agent-skills --skill surrealdb-python
+npx skills add surrealdb/agent-skills --skill surrealdb-js
 ```
 
 ### Local install from repository
@@ -100,6 +101,22 @@ Using SurrealDB with the Python SDK, covering both client/server mode
 - Using the `surrealdb` Python package (sync or async)
 - Running SurrealDB embedded in Python without a server
 - Performing CRUD operations from Python code
+
+</details>
+
+<details>
+<summary><strong>surrealdb-js</strong></summary>
+
+Using SurrealDB from JavaScript and TypeScript with the official `surrealdb`
+SDK, covering remote (WebSocket/HTTP) and embedded engines, authentication,
+CRUD, parameterized queries, and live queries.
+
+**Use when:**
+
+- Connecting to SurrealDB from Node.js, Deno, Bun, or the browser
+- Using the `surrealdb` npm package
+- Running SurrealDB embedded with `@surrealdb/node` or `@surrealdb/wasm`
+- Performing CRUD, queries, and real-time live queries from JS/TS code
 
 </details>
 
