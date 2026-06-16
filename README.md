@@ -21,6 +21,8 @@ npx skills add surrealdb/agent-skills
 
 ```bash
 npx skills add surrealdb/agent-skills --skill surrealql
+npx skills add surrealdb/agent-skills --skill surrealql-performance
+npx skills add surrealdb/agent-skills --skill surrealql-functions
 npx skills add surrealdb/agent-skills --skill surrealkit
 npx skills add surrealdb/agent-skills --skill surrealdb-vector
 npx skills add surrealdb/agent-skills --skill surrealdb-python
@@ -55,6 +57,38 @@ definitions, graph relationships, and common patterns.
 - Working with graph relationships and record IDs
 - Migrating from traditional SQL to SurrealQL
 - Setting up live queries for real-time updates
+
+</details>
+
+<details>
+<summary><strong>surrealql-performance</strong></summary>
+
+Performance optimization for SurrealDB: record ID and key design for locality and
+range scans, indexing strategy, and computed/derived fields.
+
+**Use when:**
+
+- Designing record IDs and keys for efficient lookups and range scans
+- Choosing between standard, unique, full-text, or vector indexes
+- Verifying index usage with `EXPLAIN` and avoiding over-indexing
+- Precomputing values with computed fields, views, or events
+- Diagnosing and fixing slow queries
+
+</details>
+
+<details>
+<summary><strong>surrealql-functions</strong></summary>
+
+Discover and use SurrealDB's built-in SurrealQL functions with version-current
+signatures via the SurrealQL language server and tree-sitter grammar, plus a
+namespace catalog linking every function group to its docs.
+
+**Use when:**
+
+- Looking up which built-in function to use or its exact signature
+- Getting editor completions, hover, and signature help for `.surql` files
+- Confirming a function exists in the installed SurrealDB version
+- Setting up the `surrealql-language-server` (LSP)
 
 </details>
 

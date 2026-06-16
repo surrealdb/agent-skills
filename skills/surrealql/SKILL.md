@@ -3,7 +3,7 @@ name: surrealql
 description: "Generate and modify SurrealQL queries to interact with SurrealDB databases. This includes creating and retrieving records, designing and managing schemas, establishing and querying graph relationships, performing live (real-time) queries, and leveraging all unique SurrealQL features for advanced database workflows. Use this skill whenever users need to write, adapt, or troubleshoot SurrealQL statements."
 metadata:
   author: surrealdb
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # SurrealQL
@@ -20,11 +20,34 @@ Reference these guidelines when:
 - Designing or managing schemas
 - Converting other query languages to SurrealQL
 
+## Version & Documentation
+
+**Always target the latest stable SurrealDB release.** SurrealQL evolves between
+major versions, and syntax from older releases (e.g. SurrealDB 2.x) is a common
+source of incorrect, non-validating queries. Unless the user **explicitly** asks
+for an older version, generate current (3.x) syntax.
+
+Determine the active version before generating version-sensitive syntax:
+
+- If the SurrealDB CLI is installed, run `surreal version`.
+- Otherwise, the latest released version is published as a plain string at
+  `https://download.surrealdb.com` (e.g. `v3.1.4`):
+
+  ```bash
+  curl -s https://download.surrealdb.com
+  ```
+
+`https://surrealdb.com/docs` always documents the **latest stable** release —
+treat it as the source of truth for current syntax. When in doubt about whether
+a function or form still applies (for example `type::*` helpers and how record
+IDs are constructed), confirm against the current docs rather than assuming
+older behavior.
+
 ## Rules & Conventions
 
 - SurrealQL is **NOT ANSI-SQL**. Never assume SQL knowledge from other databases applies. Always refer to the examples below or the documentation at https://surrealdb.com/docs for accurate syntax and behavior.
 - When SurrealQL is stored in a file, it should have a `.surql` extension.
-- SurrealQL is a relatively young language, and new features are being added regularly. Refer to the documentation at https://surrealdb.com/docs for the most up-to-date information.
+- SurrealQL is a relatively young language and changes between releases. Default to the **latest** SurrealDB version (see [Version & Documentation](#version--documentation)) and refer to https://surrealdb.com/docs for the most up-to-date syntax.
 
 ## Statements
 

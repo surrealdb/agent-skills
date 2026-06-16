@@ -3,14 +3,16 @@ name: surrealdb-js
 description: "Using SurrealDB from JavaScript and TypeScript with the official surrealdb SDK, covering connecting (WebSocket/HTTP and embedded engines), authentication, CRUD, parameterized queries, and live queries. Use when connecting to SurrealDB from Node, Deno, Bun, or the browser, using the surrealdb npm package, or performing CRUD and real-time operations from JS/TS code. Triggers: surrealdb JS, surrealdb.js, new Surreal(), db.query, db.create, db.live, TypeScript SDK, npm i surrealdb."
 metadata:
   author: surrealdb
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # SurrealDB JavaScript SDK
 
 The official SDK (`surrealdb` on npm) works in Node.js, Deno, Bun, and the
 browser. It connects to a remote SurrealDB instance over WebSocket/HTTP, or runs
-an embedded engine in-process. This skill targets the stable **2.x** release.
+an embedded engine in-process. Target the **latest** stable `surrealdb` release;
+install without pinning (`npm i surrealdb`) unless the user requires a specific
+version.
 
 ## Installation
 
@@ -116,7 +118,7 @@ await db.delete(new RecordId("person", "tobie"));
 ## Queries
 
 `db.query<T>(sql, vars)` runs raw SurrealQL and returns an **array with one entry
-per statement** (2.x). Always pass user input via bound parameters, never string
+per statement**. Always pass user input via bound parameters, never string
 interpolation.
 
 ```ts

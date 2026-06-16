@@ -30,6 +30,7 @@ DEFINE TABLE person SCHEMAFULL;
 
 -- Table as a view (pre-computed aggregation)
 DEFINE TABLE post_stats AS SELECT
+  product,
   count() AS total,
   math::mean(rating) AS avg_rating
 FROM review
@@ -73,7 +74,7 @@ DEFINE INDEX idx_email ON TABLE person FIELDS email UNIQUE;
 -- Full-text search index
 DEFINE INDEX idx_title ON TABLE article
   FIELDS title
-  SEARCH ANALYZER my_analyzer BM25(1.2, 0.75);
+  FULLTEXT ANALYZER my_analyzer BM25(1.2, 0.75);
 
 -- Vector index (HNSW)
 DEFINE INDEX idx_embedding ON TABLE document
