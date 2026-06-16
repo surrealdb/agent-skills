@@ -3,7 +3,7 @@ name: surrealkit
 description: "Use SurrealKit, SurrealDB's schema-management and migration CLI, to scaffold projects from templates, sync schema in development, plan and execute production rollouts (with rollback), generate JSON/TypeScript types from a live database, and write declarative TOML test suites for schemas, permissions, and API endpoints. Use this skill whenever users set up, migrate, type, or test a SurrealDB schema with SurrealKit."
 metadata:
   author: surrealdb
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 # SurrealKit

@@ -34,7 +34,7 @@ The default folder follows `--folder` / `SURREALDB_FOLDER` (so
 TypeScript generation is **not a CLI flag** — it is enabled via the `[typegen]`
 section of `surrealkit.toml`. When `typescript` is set, both
 `surrealkit typegen` and `surrealkit sync --watch` write an `index.ts` of
-SurrealDB JS SDK v2 interfaces into that directory.
+SurrealDB JS SDK interfaces into that directory.
 
 ```toml
 # surrealkit.toml
