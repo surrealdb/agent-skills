@@ -28,6 +28,7 @@ npx skills add surrealdb/agent-skills --skill surrealdb-vector
 npx skills add surrealdb/agent-skills --skill surrealdb-python
 npx skills add surrealdb/agent-skills --skill surrealdb-js
 npx skills add surrealdb/agent-skills --skill surrealdb-cli
+npx skills add surrealdb/agent-skills --skill surrealdb-docs
 ```
 
 ### Local install from repository
