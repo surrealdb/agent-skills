@@ -3,26 +3,32 @@ name: surrealdb-docs
 description: "Retrieve and display SurrealDB documentation via SSH."
 ---
 
-# SurrealDB SSH Setup
+# SurrealDB Documentation — Agent Access
 
-Choose how to add SurrealDB docs to your workflow:
+> Browse SurrealDB docs directly in your terminal via SSH.
 
-## Option 1: Append to AGENTS.md
-
-```bash
-ssh surrealdb.sh agents >> AGENTS.md
-```
-
-## Option 2: Let your agent self-configure
+## Quick start
 
 ```bash
-ssh surrealdb.sh setup | claude
+ssh surrealdb.sh grep -rl 'SELECT' /surrealdb/docs
+ssh surrealdb.sh cat /surrealdb/docs/surrealql/statements/select.mdx
+ssh surrealdb.sh find /surrealdb/docs -name '*.mdx' | head -20
 ```
 
-## Option 3: Interactive exploration
+## Available commands
 
-```bash
-ssh surrealdb.sh
-```
+All standard Unix text utilities work inside the sandbox:
 
-Then use standard bash commands to browse docs at `/surrealdb/docs`.
+- `grep` — search across documentation topics
+- `find` — locate relevant pages
+- `cat` — read full documentation files
+- `head` / `tail` — skim content without consuming excessive context
+- `ls` — list directory contents
+- `wc` — count lines/words
+
+## Tips for agents
+
+1. Start with `find /surrealdb/docs -name '*.mdx'` to discover available pages
+2. Use `grep -rl '<keyword>' /surrealdb/docs` to find relevant files
+3. Use `head -50` to skim before reading full files
+4. The docs mirror surrealdb.com/docs — same markdown source
