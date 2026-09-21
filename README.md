@@ -97,14 +97,18 @@ namespace catalog linking every function group to its docs.
 <summary><strong>surrealkit</strong></summary>
 
 SurrealKit CLI for SurrealDB schema management: project scaffolding from
-templates, development sync, phased production rollouts, type generation, and a
-declarative testing framework.
+templates, development sync, phased production rollouts, schema modules and
+database targets, static SurrealQL analysis, type generation, and a declarative
+testing framework.
 
 **Use when:**
 
 - Scaffolding a new SurrealDB project with `surrealkit init` and templates
 - Applying schema changes in development with `surrealkit sync`
 - Planning, executing, or rolling back production migrations with `surrealkit rollout`
+- Adopting SurrealKit on an existing database with `surrealkit rollout baseline`
+- Splitting a schema into modules, or applying it to several database targets
+- Statically checking SurrealQL without a database with `surrealkit check`
 - Generating JSON or TypeScript types from a live schema with `surrealkit typegen`
 - Writing declarative TOML tests for schemas, permissions, and API endpoints with `surrealkit test`
 

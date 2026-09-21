@@ -8,6 +8,10 @@ title: Testing Framework
 By default each suite runs in an isolated ephemeral namespace/database and the
 command exits non-zero (failing CI) if any case fails.
 
+The runner performs a filesystem sync first, so the non-empty source preflight
+applies (see [modules-targets.md](modules-targets.md)). Pass `--no-sync` when
+the suite's fixtures intentionally own the complete schema instead.
+
 ```bash
 surrealkit test
 surrealkit test --json-out database/tests/report.json   # machine-readable CI report
@@ -24,7 +28,7 @@ surrealkit test --json-out database/tests/report.json   # machine-readable CI re
 | `--parallel <N>` | Run N suites concurrently (default `1`) |
 | `--json-out <path>` | Write a machine-readable JSON report |
 | `--no-setup` | Skip running `setup.surql` |
-| `--no-sync` | Skip `sync` before tests |
+| `--no-sync` | Skip `sync` before tests — use when the suite's fixtures own the complete schema |
 | `--no-seed` | Skip seeding before tests |
 | `--base-url <url>` | API base URL for `api_request` cases |
 | `--timeout-ms <ms>` | Per-case timeout |
@@ -44,7 +48,8 @@ kind = "root"
 ```
 
 Env fallbacks: `SURREALKIT_TEST_BASE_URL`, `SURREALKIT_TEST_TIMEOUT_MS`, and
-`SURREALDB_HOST` / `DATABASE_HOST` (used as the API base URL fallback).
+`SURREALDB_HOST` (used as the API base URL fallback when no test-specific base
+URL is set). The `DATABASE_*` aliases were removed in 1.0.
 
 ## Suite shape
 
@@ -72,6 +77,15 @@ expected_status = 200
 path = "0.id"
 exists = true
 ```
+
+## Assertions and missing paths
+
+An assertion whose `path` — or a `header_assertions` `name` — is **not present**
+in the result **fails** with `path '<path>' not found`. This catches typos and
+queries that matched zero rows, which would otherwise report a pass without ever
+running the comparison. To assert that a field is genuinely absent, state it
+explicitly with `exists = false`; that is the only spec that passes on a missing
+path. (Before 1.0 a missing path passed silently.)
 
 ## Case kinds
 
