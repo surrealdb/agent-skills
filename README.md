@@ -29,6 +29,7 @@ npx skills add surrealdb/agent-skills --skill surrealdb-python
 npx skills add surrealdb/agent-skills --skill surrealdb-js
 npx skills add surrealdb/agent-skills --skill surrealdb-cli
 npx skills add surrealdb/agent-skills --skill surrealdb-docs
+npx skills add surrealdb/agent-skills --skill surrealdb-agent-memory-docs
 ```
 
 ### Local install from repository
@@ -174,6 +175,21 @@ maintenance tasks.
 - Backing up or restoring data with `surreal export` and `surreal import`
 - Gating scripts or CI on server readiness with `surreal is-ready`
 - Upgrading the binary, repairing storage, or managing ML models (`surreal upgrade`, `surreal fix`, `surreal ml`)
+
+</details>
+
+<details>
+<summary><strong>surrealdb-agent-memory-docs</strong></summary>
+
+Navigate the official SurrealDB Agent Memory (formerly Spectron) documentation
+as markdown over HTTPS, or grep it over SSH via `surrealdb.sh`.
+
+**Use when:**
+
+- Building with SurrealDB Agent Memory (SDKs, MCP server, REST API, CLI)
+- Looking up ingest, sessions, recall, reasoning, or tuning behaviour
+- Following a quickstart, cookbook, or migration guide (mem0, Zep, LangMem)
+- Self-hosting and operating the `spectrond` server
 
 </details>
 
