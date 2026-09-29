@@ -189,7 +189,6 @@ as markdown over HTTPS, or grep it over SSH via `surrealdb.sh`.
 - Building with SurrealDB Agent Memory (SDKs, MCP server, REST API, CLI)
 - Looking up ingest, sessions, recall, reasoning, or tuning behaviour
 - Following a quickstart, cookbook, or migration guide (mem0, Zep, LangMem)
-- Self-hosting and operating the `spectrond` server
 
 </details>
 
