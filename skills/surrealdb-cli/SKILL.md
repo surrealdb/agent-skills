@@ -1,6 +1,6 @@
 ---
 name: surrealdb-cli
-description: "Use the `surreal` command-line binary to run a SurrealDB server (in-memory, RocksDB, SurrealKV, or TiKV), open an interactive or piped SQL REPL, import and export databases, check server readiness, install, switch and pin multiple database versions (`surreal +4.0.1 db …`), repair storage, and manage SurrealML models. Use this skill whenever users run, connect to, back up, restore, or operate SurrealDB from the terminal. Triggers: surreal db start, surreal db sql, surreal db import, surreal db export, surreal install, surreal use, surreal list, surreal upgrade, surreal +VERSION, surreal fix, surreal ml, SurrealDB CLI, surreal server."
+description: "Use the `surreal` command-line binary to run a SurrealDB server (in-memory, RocksDB, SurrealKV, or TiKV), open an interactive or piped SQL REPL, import and export databases, check server readiness, install, switch and pin multiple database versions (`surreal +4.0.1 db …`), repair storage, and manage SurrealML models. Use this skill whenever users run, connect to, back up, restore, or operate SurrealDB from the terminal. Triggers: surreal db start, surreal db sql, surreal db import, surreal db export, surreal install, surreal cloud, surreal memory, surreal use, surreal list, surreal upgrade, surreal +VERSION, surreal fix, surreal ml, SurrealDB CLI, surreal server."
 metadata:
   author: surrealdb
   version: "0.2.0"
@@ -21,6 +21,7 @@ Reference these guidelines when:
 - Importing or exporting a database for backups, seeding, or migration (`surreal db import` / `surreal db export`)
 - Gating scripts or CI on server availability (`surreal db is-ready`)
 - Installing, switching, pinning or running a specific database version (`surreal install`, `surreal use`, `surreal +4.0.1 db …`)
+- Installing or using the `cloud`, `memory`, `kit`, `lsp`, `ent` or `ext` components (`surreal install cloud`, `surreal memory --help`)
 - Upgrading the CLI or database, or repairing on-disk storage after an upgrade (`surreal upgrade` / `surreal db fix`)
 - Importing or exporting SurrealML models (`surreal db ml`, db 3.x only)
 
@@ -63,6 +64,37 @@ of your data, or to export from an old server and import into a new one. See
 The `db` surface differs by version — 4.x has no `ml`, `module`, `upgrade` or
 `v2` subcommands. Check `surreal +VERSION db --help`.
 
+### Other components
+
+Besides `db`, the launcher fronts these components. They are **not installed by
+default**: running one that is missing fails with an install hint (it will not
+download without confirmation). Install on demand, and learn each one's
+arguments from its own `--help` rather than guessing — their surface changes
+independently of `db`.
+
+| Component | Purpose | Install |
+| --- | --- | --- |
+| `cloud` | SurrealDB Cloud: organisations, instances, backups, teams | `surreal install cloud` |
+| `memory` | Agent memory: remember, recall, reflect | `surreal install memory` |
+| `kit` | Schema migrations, seed data, typegen, tests (see the **surrealkit** skill) | `surreal install kit` |
+| `lsp` | SurrealQL language server for editors (see the **surrealql-functions** skill) | `surreal install lsp` |
+| `ent` | SurrealDB Enterprise, the licensed edition of the database | `surreal install ent` |
+| `ext` | Build and run WebAssembly extensions | `surreal install ext` |
+
+```bash
+surreal list                    # which components are installed
+surreal install cloud           # install (add -y to skip the prompt)
+surreal cloud --help            # discover subcommands and flags
+surreal memory --help
+```
+
+When a task needs one of these (managing a Cloud instance, storing or recalling
+agent memory), check `surreal list`, install the component if the user's task
+calls for it, then use `surreal <component> --help` and
+`surreal <component> <subcommand> --help` to work out the arguments. Both
+`cloud` and `memory` act on remote accounts or data, so confirm destructive
+operations (deleting instances, forgetting memories) with the user first.
+
 ## Command map
 
 | Command | Purpose | Reference |
@@ -78,7 +110,7 @@ The `db` surface differs by version — 4.x has no `ml`, `module`, `upgrade` or
 | `surreal db fix [PATH]` | Migrate on-disk storage to the current format | [maintenance.md](references/maintenance.md) |
 | `surreal db ml <sub>` | Import / export SurrealML models (db 3.x only) | [maintenance.md](references/maintenance.md) |
 
-`surreal db validate` (SurrealQL file checking) and formatting are covered by the **surrealql** skill. `surreal db mcp` (MCP server over stdio) also exists — run `surreal db --help` to confirm the surface of the installed version. Other components (`kit`, `lsp`, `memory`, …) are installed on demand with `surreal install <component>`; see the **surrealkit** skill for `kit`.
+`surreal db validate` (SurrealQL file checking) and formatting are covered by the **surrealql** skill. `surreal db mcp` (MCP server over stdio) also exists — run `surreal db --help` to confirm the surface of the installed version. Other components are covered under "Other components" above.
 
 ## Connection flags & env vars
 
