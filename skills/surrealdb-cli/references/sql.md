@@ -1,10 +1,10 @@
 ---
-title: Querying with surreal sql
+title: Querying with surreal db sql
 ---
 
-# Querying with `surreal sql`
+# Querying with `surreal db sql`
 
-`surreal sql` opens a SurrealQL REPL against a running server, and also accepts
+`surreal db sql` opens a SurrealQL REPL against a running server, and also accepts
 piped input for non-interactive use in scripts and CI.
 
 For the SurrealQL statements themselves (SELECT, CREATE, RELATE, DEFINE, …) use
@@ -34,7 +34,7 @@ the **surrealql** skill — this page covers driving the shell.
 ## Interactive REPL
 
 ```bash
-surreal sql --endpoint ws://localhost:8000 \
+surreal db sql --endpoint ws://localhost:8000 \
   --username root --password root \
   --namespace main --database main --pretty
 ```
@@ -51,7 +51,7 @@ SELECT * FROM user LIMIT 5;
 `--token` replaces `--username`/`--password`:
 
 ```bash
-surreal sql --endpoint http://localhost:8000 \
+surreal db sql --endpoint http://localhost:8000 \
   --namespace main --database main --token "$SURREAL_JWT"
 ```
 
@@ -62,16 +62,16 @@ stdin and exits when input ends:
 
 ```bash
 # Run a file of statements
-cat queries.surql | surreal sql \
+cat queries.surql | surreal db sql \
   --endpoint http://localhost:8000 \
   --user root --pass root --ns main --db main
 
 # One-off query, JSON output for downstream tooling
-echo 'SELECT count() FROM user GROUP ALL;' | surreal sql \
+echo 'SELECT count() FROM user GROUP ALL;' | surreal db sql \
   --user root --pass root --ns main --db main --json --hide-welcome
 ```
 
-For bulk data loads prefer `surreal import` over piping into `sql`; see
+For bulk data loads prefer `surreal db import` over piping into `sql`; see
 [import-export.md](import-export.md).
 
 ## Tips

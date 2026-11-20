@@ -4,11 +4,11 @@ title: Running a Server
 
 # Running a Server
 
-`surreal start [OPTIONS] [PATH]` launches a SurrealDB server. The optional
+`surreal db start [OPTIONS] [PATH]` launches a SurrealDB server. The optional
 `PATH` selects the storage backend; when omitted it defaults to `memory`.
 
 ```
-surreal start [OPTIONS] [PATH]
+surreal db start [OPTIONS] [PATH]
 ```
 
 ## Storage backends
@@ -41,19 +41,19 @@ persistence; `tikv` for horizontally scaled deployments.
 
 ```bash
 # In-memory dev server with root credentials
-surreal start --user root --pass root memory
+surreal db start --user root --pass root memory
 
 # Persistent RocksDB store with debug logging
-surreal start --log debug --user root --pass root rocksdb:mydata.db
+surreal db start --log debug --user root --pass root rocksdb:mydata.db
 
 # Persistent SurrealKV store
-surreal start --user root --pass root surrealkv://mydata
+surreal db start --user root --pass root surrealkv://mydata
 
 # Expose on all interfaces, custom port (see caveat below)
-surreal start --bind 0.0.0.0:8000 --user root --pass root rocksdb:mydata.db
+surreal db start --bind 0.0.0.0:8000 --user root --pass root rocksdb:mydata.db
 
 # Unauthenticated throwaway instance — never expose this
-surreal start --unauthenticated memory
+surreal db start --unauthenticated memory
 ```
 
 ### Docker
@@ -79,5 +79,5 @@ rather than `latest`.
 - A `memory` server loses all data when the process stops — do not use it for
   anything you need to keep.
 - After a major version upgrade, an on-disk store may need
-  `surreal fix <PATH>` before it will start. See
+  `surreal db fix <PATH>` before it will start. See
   [maintenance.md](maintenance.md).

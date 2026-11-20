@@ -4,7 +4,7 @@ title: Import & Export
 
 # Import & Export
 
-`surreal import` loads a SurrealQL script into a database; `surreal export`
+`surreal db import` loads a SurrealQL script into a database; `surreal db export`
 dumps a database back out as SurrealQL. Together they cover backups, restores,
 seeding, and moving data between instances.
 
@@ -16,24 +16,24 @@ and `--database` are required.
 ## Import
 
 ```
-surreal import [OPTIONS] --namespace <NS> --database <DB> <FILE>
+surreal db import [OPTIONS] --namespace <NS> --database <DB> <FILE>
 ```
 
 `<FILE>` is a path to a `.surql` script and is required.
 
 ```bash
 # Restore a dump with root credentials
-surreal import --endpoint http://localhost:8000 \
+surreal db import --endpoint http://localhost:8000 \
   --user root --pass root --ns main --db main backup.surql
 
 # With token auth
-surreal import --token "$SURREAL_JWT" --ns main --db main seed.surql
+surreal db import --token "$SURREAL_JWT" --ns main --db main seed.surql
 ```
 
 ## Export
 
 ```
-surreal export [OPTIONS] --namespace <NS> --database <DB> [FILE]
+surreal db export [OPTIONS] --namespace <NS> --database <DB> [FILE]
 ```
 
 `[FILE]` is optional and defaults to `-` (stdout), so the export can be
@@ -41,12 +41,12 @@ redirected or piped.
 
 ```bash
 # Full database dump to a file
-surreal export --endpoint http://localhost:8000 \
+surreal db export --endpoint http://localhost:8000 \
   --user root --pass root --ns main --db main backup.surql
 
 # Stream to stdout (e.g. pipe straight into another instance)
-surreal export --user root --pass root --ns main --db main | \
-  surreal import --endpoint http://other:8000 \
+surreal db export --user root --pass root --ns main --db main | \
+  surreal db import --endpoint http://other:8000 \
     --user root --pass root --ns main --db main /dev/stdin
 ```
 
@@ -73,11 +73,11 @@ recent versions.)
 
 ```bash
 # Schema-only backup: definitions but no row data
-surreal export --user root --pass root --ns main --db main \
+surreal db export --user root --pass root --ns main --db main \
   --records false schema.surql
 
 # Export just two tables
-surreal export --user root --pass root --ns main --db main \
+surreal db export --user root --pass root --ns main --db main \
   --only --tables user,order subset.surql
 ```
 
@@ -85,11 +85,11 @@ surreal export --user root --pass root --ns main --db main \
 
 ```bash
 # Back up nightly
-surreal export --user root --pass root --ns main --db main \
+surreal db export --user root --pass root --ns main --db main \
   "backup-$(date +%F).surql"
 
 # Restore into a fresh database
-surreal import --user root --pass root --ns main --db restored \
+surreal db import --user root --pass root --ns main --db restored \
   backup-2026-06-15.surql
 ```
 
