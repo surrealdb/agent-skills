@@ -1,0 +1,10 @@
+{
+  "name": "surrealdb",
+  "description": "Official SurrealDB agent skills: SurrealQL, SDKs, CLI, SurrealKit, vector search, performance and docs lookup.",
+  "version": "0.1.0",
+  "author": { "name": "SurrealDB" },
+  "homepage": "https://github.com/surrealdb/agent-skills",
+  "repository": "https://github.com/surrealdb/agent-skills",
+  "license": "MIT",
+  "skills": "./skills/"
+}
