@@ -12,7 +12,8 @@ dist/
 
 # AI Agent directories
 .agent/
-.agents/
+.agents/*
+!.agents/plugins/
 .codex/
 .gemini/
 .goose/

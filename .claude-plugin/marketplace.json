@@ -1,0 +1,12 @@
+{
+  "name": "surrealdb",
+  "owner": { "name": "SurrealDB", "url": "https://surrealdb.com" },
+  "metadata": { "description": "Official SurrealDB agent skills." },
+  "plugins": [
+    {
+      "name": "surrealdb",
+      "source": "./",
+      "description": "Official SurrealDB agent skills: SurrealQL, SDKs, CLI, SurrealKit, vector search, performance and docs lookup."
+    }
+  ]
+}
