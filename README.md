@@ -11,13 +11,18 @@ format.
 
 ## Installation
 
-### As a plugin (auto-updates)
+### As a plugin (recommended)
 
 Claude Code:
 
 ```bash
-/plugin install surrealdb --marketplace surrealdb/agent-skills
+/plugin marketplace add surrealdb/agent-skills
+/plugin install surrealdb@surrealdb
 ```
+
+Third-party marketplaces do not auto-update by default. We recommend enabling
+it so you always get the latest skills: run `/plugin`, open the **Marketplaces**
+tab, select `surrealdb`, and choose **Enable auto-update**.
 
 Codex:
 
@@ -25,9 +30,10 @@ Codex:
 codex plugin marketplace add surrealdb/agent-skills
 ```
 
-Then install `surrealdb` from the plugin directory. Cursor reads
-`.cursor-plugin/plugin.json`. Plugin installs track this repository, so updates
-arrive automatically.
+Then install `surrealdb` from the plugin directory. To pick up new releases,
+run `codex plugin marketplace upgrade surrealdb` periodically.
+
+Cursor reads `.cursor-plugin/plugin.json`.
 
 ### Install all skills
 
